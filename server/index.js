@@ -7,6 +7,6 @@ const app = express();
 const PORT = process.env.MY_PORT || 4000;
 dbConnect();
 app.listen(PORT, () => {
-    console.log(`Server sarted at ${PORT}`);
-})
+  console.log(`Server sarted at ${PORT}`);
+});
 defaultDatabase();
