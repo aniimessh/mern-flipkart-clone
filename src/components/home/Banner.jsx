@@ -22,7 +22,7 @@ const responsive = {
 // custom css
 const Image = styled('img')({
     width: '100%',
-    height: '280'
+    height: 320,
 })
 
 function Banner() {

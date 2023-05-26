@@ -1,0 +1,183 @@
+import styled from "@emotion/styled";
+import { Box, Dialog, TextField, Typography, Button } from "@mui/material";
+import React, { useState } from "react";
+import { UserSignUp } from "../../services/api";
+
+// custom css into MUI Component
+const Component = styled(Box)`
+  height: 70vh;
+  width: 90vh;
+`;
+const Image = styled(Box)`
+  background: #2874f0
+    url(https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png)
+    no-repeat center 85%;
+  height: 86.7%;
+  width: 35%;
+  padding: 45px 35px;
+  & > p,
+  & > h5 {
+    color: #fff;
+    font-weight: 600;
+  }
+`;
+const Wrapper = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  padding: 25px 35px;
+  flex: 1;
+  & > div,
+  & > Button,
+  & > p {
+    margin-top: 20px;
+  }
+`;
+const LoginButton = styled(Button)`
+  font-weight: 600;
+  text-transform: none;
+  background: #fb641b;
+  color: #fff;
+  height: 48px;
+  border-radius: 2px;
+`;
+const OTPButton = styled(Button)`
+  text-transform: none;
+  background: #fff;
+  color: #2874f0;
+  height: 48px;
+  border-radius: 2px;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 20%);
+`;
+const Text = styled(Typography)`
+  font-size: 12px;
+  color: #878787;
+`;
+const CreateAccount = styled(Typography)`
+  font-size: 14px;
+  text-align: center;
+  color: #2874f0;
+  font-weight: 600;
+  cursor: pointer;
+`;
+const OTPButton2 = styled(Button)`
+  text-transform: none;
+  background: #fff;
+  color: #2874f0;
+  height: 48px;
+  border-radius: 2px;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 20%);
+  font-weight: 600;
+`;
+const accountView = {
+  login: {
+    view: `login`,
+  },
+  signup: {
+    view: `signup`,
+  },
+};
+
+function LoginDialog({ open, setOpen }) {
+  const [account, setAccount] = useState(accountView.login);
+  const [signUp, setSignUp] = useState({ userNumber: "", userName:"",userPassword:"" });
+  function toogleAccount() {
+    setAccount(accountView.signup);
+  }
+  function handlerClose() {
+    setOpen(false);
+    setAccount(accountView.login);
+  }
+  function onInputChange(e) {
+    setSignUp({ ...signUp, [e.target.name]: e.target.value });
+    console.log(signUp);
+  }
+  async function singUpUser() {
+    let response = await UserSignUp(signUp);
+    if(!response) return;
+    handlerClose();
+  }
+  return (
+    <Dialog
+      open={open}
+      onClose={handlerClose}
+      PaperProps={{ sx: { maxWidth: "unset" } }}
+    >
+      <Component>
+        <Box style={{ display: "flex", height: "100%" }}>
+          {account.view == `login` ? (
+            <Image>
+              <Typography variant="h5">Login</Typography>
+              <Typography style={{ marginTop: 20 }}>
+                Get access to your Order, Wishlist and Recommendations
+              </Typography>
+            </Image>
+          ) : (
+            <Image>
+              <Typography variant="h5">Looks like you're new here!</Typography>
+              <Typography style={{ marginTop: 20 }}>
+                Sign up with your mobile number to get started
+              </Typography>
+            </Image>
+          )}
+          {account.view === `login` ? (
+            <Wrapper>
+              <TextField
+                variant="standard"
+                label="Enter Email/ Mobile Number"
+              />
+              <TextField
+                variant="standard"
+                type="password"
+                label="Enter Password"
+              />
+              <Text>
+                By continuing, you agree to Flipkart's Terms of Use and Privacy
+                Policy.
+              </Text>
+              <LoginButton>Login</LoginButton>
+              <Typography style={{ textAlign: "center" }}>OR</Typography>
+              <OTPButton>Request OTP</OTPButton>
+              <CreateAccount onClick={toogleAccount}>
+                New to Flipkart? Create an account
+              </CreateAccount>
+            </Wrapper>
+          ) : (
+            <Wrapper>
+              <TextField
+                variant="standard"
+                label="Mobile Number"
+                type="tel"
+                name="userNumber"
+                onChange={(e) => onInputChange(e)}
+              />
+              <TextField
+                variant="standard"
+                label="User Name"
+                type="text"
+                name="userName"
+                onChange={(e) => onInputChange(e)}
+              />
+              <TextField
+                variant="standard"
+                label="Password"
+                type="password"
+                name="userPassword"
+                onChange={(e) => onInputChange(e)}
+              />
+              <Typography>
+                By continuing, you agree to Flipkart's Terms of Use and Privacy
+                Policy.
+              </Typography>
+              <LoginButton onClick={singUpUser}>Continue</LoginButton>
+              <OTPButton2 onClick={() => setAccount(accountView.login)}>
+                Existing User? Log in
+              </OTPButton2>
+            </Wrapper>
+          )}
+        </Box>
+      </Component>
+    </Dialog>
+  );
+}
+
+export default LoginDialog;

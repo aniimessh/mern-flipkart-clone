@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import { Box, Button, Typography } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import React from "react";
+import React, { useState } from "react";
+import LoginDialog from "../Login/LoginDialog";
 
 // custom CSS on MUI Component
 const Wrapper = styled(Box)`
@@ -28,15 +29,20 @@ const LoginButton = styled(Button)`
 `
 
 function CustomButton() {
+  const [open, setOpen] = useState(false);
+  function clickHandler(){
+    setOpen(true);
+  }
   return (
     <Wrapper>
-      <LoginButton variant="contained">Login</LoginButton>
+      <LoginButton variant="contained" onClick={() => clickHandler()}>Login</LoginButton>
       <Typography style={{marginTop: 3, width:135}}>Become a Seller</Typography>
       <Typography style={{marginTop: 3}}>More</Typography>
       <Container>
           <ShoppingCartIcon />
         <Typography>Cart</Typography>
       </Container>
+      <LoginDialog open={open} setOpen={setOpen}/>
     </Wrapper>
   );
 }

@@ -6,7 +6,8 @@ import styled from "@emotion/styled";
 const WrapperBox = styled(Box)`
     display: flex;
     margin: 55px 130px 0px 130px;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 3%;
 `
 const Component = styled(Box)`
     padding: 12px 8px; 
