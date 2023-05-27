@@ -4,6 +4,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import React, { useContext, useState } from "react";
 import LoginDialog from "../Login/LoginDialog";
 import { DataContext } from "../../context/DataProvider";
+import Profile from "./Profile";
 
 // custom CSS on MUI Component
 const Wrapper = styled(Box)`
@@ -40,7 +41,7 @@ function CustomButton() {
   return (
     <Wrapper>
       {account ? (
-        <Typography>{account}</Typography>
+        <Profile account={account}/>
       ) : (
         <LoginButton variant="contained" onClick={() => clickHandler()}>
           Login
