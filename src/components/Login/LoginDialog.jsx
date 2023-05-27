@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import { Box, Dialog, TextField, Typography, Button } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { UserSignUp } from "../../services/api";
+import { DataContext } from "../../context/DataProvider";
 
 // custom css into MUI Component
 const Component = styled(Box)`
@@ -78,14 +79,15 @@ const accountView = {
 };
 
 function LoginDialog({ open, setOpen }) {
-  const [account, setAccount] = useState(accountView.login);
+  const [account, changeAccount] = useState(accountView.login);
   const [signUp, setSignUp] = useState({ userNumber: "", userName:"",userPassword:"" });
+  const {setAccount} = useContext(DataContext);
   function toogleAccount() {
-    setAccount(accountView.signup);
+    changeAccount(accountView.signup);
   }
   function handlerClose() {
     setOpen(false);
-    setAccount(accountView.login);
+    changeAccount(accountView.login);
   }
   function onInputChange(e) {
     setSignUp({ ...signUp, [e.target.name]: e.target.value });
@@ -95,6 +97,7 @@ function LoginDialog({ open, setOpen }) {
     let response = await UserSignUp(signUp);
     if(!response) return;
     handlerClose();
+    setAccount(signUp.userName);
   }
   return (
     <Dialog
@@ -169,7 +172,7 @@ function LoginDialog({ open, setOpen }) {
                 Policy.
               </Typography>
               <LoginButton onClick={singUpUser}>Continue</LoginButton>
-              <OTPButton2 onClick={() => setAccount(accountView.login)}>
+              <OTPButton2 onClick={() => changeAccount(accountView.login)}>
                 Existing User? Log in
               </OTPButton2>
             </Wrapper>
