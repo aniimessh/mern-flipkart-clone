@@ -1,7 +1,12 @@
+import styled from "@emotion/styled";
 import { Typography, Menu, Box, MenuItem } from "@mui/material";
 import React, { useState } from "react";
 
-function Profile({ account }) {
+const Component = styled(Menu)`
+  margin-top:5px;
+`
+
+function Profile({ account,setAccount }) {
   const [open, setsOpen] = useState(false);
   function handlerClick(event) {
     setsOpen(event.currentTarget);
@@ -9,20 +14,23 @@ function Profile({ account }) {
   function handleClose() {
     setsOpen(false);
   }
+  function logout(){
+    setAccount('');
+  }
   return (
     <>
       <Box onClick={handlerClick}>
         <Typography style={{ marginTop: 2 }}>{account}</Typography>
       </Box>
-      <Menu
+      <Component
         anchorEl={open}
         open={Boolean(open)}
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
-      </Menu>
+        <MenuItem onClick={() => {handleClose(); logout();}}>Logout</MenuItem>
+      </Component>
     </>
   );
 }

@@ -8,3 +8,13 @@ export async function UserSignUp(data){
         console.log(err.message)
     }
 }
+
+export async function UserLogin(data){
+    try{
+        return await axios.post(`${URL}/login`, data)
+    }catch(err){
+        console.log("Error While calling Login()")
+        console.log(err.message)
+        return err.response;
+    }
+}

@@ -20,3 +20,21 @@ export async function userSignUp(req, res) {
     });
   }
 }
+
+export async function loginUser(req, res) {
+  try {
+    const userName = req.body.userName;
+    const userPassword = req.body.userPassword;
+    let user = await User.findOne({
+      userName: userName,
+      userPassword: userPassword,
+    });
+    if (user) {
+      return res.status(200).json(`{${userName} loggedin Succesfully}`);
+    } else {
+      return res.status(401).json("Invalid Login");
+    }
+  } catch (err) {
+    res.status(500).json("Error", err.message);
+  }
+}
