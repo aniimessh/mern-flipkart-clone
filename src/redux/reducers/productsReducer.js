@@ -1,15 +1,13 @@
 import React from "react";
-import * as actionType from "../constants/productConstant.js";
+import * as actionTypes from "../constants/productConstant.js";
 
-function getProductsReducers(state = {products: []}, action) {
+export const getProductsReducer = () => (state = { products: [] }, action) => {
   switch (action.type) {
-    case actionType.GET_PRODUCTS_SUCCESS:
+    case actionTypes.GET_PRODUCTS_SUCCESS:
       return { products: action.payload };
-    case actionType.GET_PRODUCTS_FAILURE:
+    case actionTypes.GET_PRODUCTS_FAIL:
       return { error: action.payload };
     default:
       return state;
   }
-}
-
-export default getProductsReducers;
+};

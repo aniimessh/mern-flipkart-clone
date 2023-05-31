@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Navbar from "./Navbar";
 import Banner from "./Banner";
 import { Box, styled } from "@mui/material";
-import { getProducts } from "../../redux/actions/productAction";
+import {getProducts} from "../../redux/actions/productAction";
 import { useDispatch } from "react-redux";
 
 const Container = styled(Box)`
