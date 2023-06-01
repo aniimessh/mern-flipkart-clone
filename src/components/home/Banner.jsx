@@ -31,7 +31,7 @@ function Banner() {
   containerClass="carousel-container" dotListClass="custom-dot-list-style">
     {
         bannerData.map((item) => (
-            <Image src={item.url} alt="BannerImage"/>
+            <Image src={item.url} key={item.id} alt="BannerImage"/>
         ))
     }
   </Carousel>;

@@ -20,10 +20,10 @@ const Text = styled(Typography)`
 function Navbar() {
   return (
     <WrapperBox>
-      {navData.map((item) => {
+      {navData.map((item, id) => {
         return (
           <Component>
-            <img src={item.url} alt="itemImage" style={{width: 64}}/>
+            <img src={item.url} alt="itemImage" style={{width: 64}} key={item.id}/>
             <Text>{item.text}</Text>
           </Component>
         );
