@@ -4,7 +4,7 @@ import Banner from "./Banner";
 import { Box, styled } from "@mui/material";
 import {getProducts} from "../../redux/actions/productAction";
 import { useDispatch, useSelector } from "react-redux";
-import Slide from './Slide';
+// import Slide from './Slide';
 
 const Container = styled(Box)`
   padding: 10px 100px;
@@ -12,7 +12,7 @@ const Container = styled(Box)`
 `;
 
 function Home() {
-  const { products } = useSelector(state => state.getProducts)
+  // const { products } = useSelector(state => state.getProducts)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function Home() {
       <Navbar />
       <Container>
         <Banner/>
-        <Slide products={products}/>
+        {/* <Slide products={products}/> */}
       </Container>
     </>
   );
