@@ -2,7 +2,7 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import { bannerData } from "../../constants/data";
 import styled from "@emotion/styled";
-import 'react-multi-carousel/lib/styles.css';
+import "react-multi-carousel/lib/styles.css";
 
 const responsive = {
   desktop: {
@@ -20,21 +20,28 @@ const responsive = {
 };
 
 // custom css
-const Image = styled('img')({
-    width: '100%',
-    height: 320,
-})
+const Image = styled("img")({
+  width: "100%",
+  height: 320
+});
 
 function Banner() {
-  return <Carousel responsive={responsive} swipeable={false}
-  draggable={false} infinite={true} autoPlay={true} autoPlaySpeed={4000}
-  containerClass="carousel-container" dotListClass="custom-dot-list-style">
-    {
-        bannerData.map((item) => (
-            <Image src={item.url} key={item.id} alt="BannerImage"/>
-        ))
-    }
-  </Carousel>;
+  return (
+    <Carousel
+      responsive={responsive}
+      swipeable={false}
+      draggable={false}
+      infinite={true}
+      autoPlay={true}
+      autoPlaySpeed={4000}
+      containerClass="carousel-container"
+      dotListClass="custom-dot-list-style"
+    >
+      {bannerData.map((item) => (
+        <Image src={item.url} key={item.id} alt="BannerImage" />
+      ))}
+    </Carousel>
+  );
 }
 
 export default Banner;

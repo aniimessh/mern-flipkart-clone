@@ -22,8 +22,8 @@ function Navbar() {
     <WrapperBox>
       {navData.map((item, id) => {
         return (
-          <Component>
-            <img src={item.url} alt="itemImage" style={{width: 64}} key={item.id}/>
+          <Component key={id}>
+            <img src={item.url} alt="itemImage" style={{width: 64}}/>
             <Text>{item.text}</Text>
           </Component>
         );
