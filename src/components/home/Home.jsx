@@ -10,7 +10,6 @@ import { ProductItem } from "./ProductItem";
 const Container = styled(Box)`
   padding: 10px 100px;
   background-color: #f2f2f2;
-  width: 100vw;
 `;
 
 function Home() {
