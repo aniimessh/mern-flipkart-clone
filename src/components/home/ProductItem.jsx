@@ -29,7 +29,7 @@ const ImageBox = styled(Box)(({theme}) => ({
 }));
 
 const Image = styled("img")(({theme}) => ({
-  height:'300',
+  height:'300px',
   [theme.breakpoints.down('md')] : {
     height:'100%',
     width:'100%',
