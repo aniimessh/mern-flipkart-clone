@@ -1,8 +1,9 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import { bannerData } from "../../constants/data";
-import styled from "@emotion/styled";
+// import styled from "@emotion/styled";
 import "react-multi-carousel/lib/styles.css";
+import {styled } from "@mui/material";
 
 const responsive = {
   desktop: {
@@ -20,10 +21,15 @@ const responsive = {
 };
 
 // custom css
-const Image = styled("img")({
+const Image = styled("img")(({ theme }) => ({
   width: "100%",
-  height: 320
-});
+  height: 320,
+  [theme.breakpoints.down('md')]:{
+    width: '100vw',
+    objefctFit: 'cover',
+    height:120,
+  }
+}));
 
 function Banner() {
   return (

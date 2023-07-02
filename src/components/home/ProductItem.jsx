@@ -22,20 +22,34 @@ const ProductCard = [
   Product9,
 ];
 
-const ImageBox = styled(Box)`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
+const ImageBox = styled(Box)(({theme}) => ({
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'space-between',
+}));
+
+const Image = styled("img")(({theme}) => ({
+  height:'300',
+  [theme.breakpoints.down('md')] : {
+    height:'100%',
+    width:'100%',
+    objectFit: 'contain',
+    marginTop:'10px',
+  }
+}))
+
+const StyledBox = styled(Box)(({theme}) => ({
+  marginTop:'10px',
+}))
 
 export const ProductItem = () => {
   return (
     <ImageBox>
       {ProductCard.map((item) => {
         return (
-          <Box style={{ marginTop: "10px" }}>
-            <Link href="#"> <img src={item} alt="" style={{ height: 300 }} /></Link>
-          </Box>
+          <StyledBox>
+            <Link href="#"> <Image src={item} alt="" /></Link>
+          </StyledBox>
         );
       })}
     </ImageBox>

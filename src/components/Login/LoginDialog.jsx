@@ -70,12 +70,12 @@ const OTPButton2 = styled(Button)`
   font-weight: 600;
 `;
 const Error = styled(Typography)`
-  font-size:10px;
-  color:#ff6161;
-  line-height:0;
-  margin-top:10px;
-  font-weight:600;
-`
+  font-size: 10px;
+  color: #ff6161;
+  line-height: 0;
+  margin-top: 10px;
+  font-weight: 600;
+`;
 const accountView = {
   login: {
     view: `login`,
@@ -84,15 +84,19 @@ const accountView = {
     view: `signup`,
   },
 };
-const loginValue={
-    userName:'',
-    userPassword:''
-}
+const loginValue = {
+  userName: "",
+  userPassword: "",
+};
 
 function LoginDialog({ open, setOpen }) {
   const [account, changeAccount] = useState(accountView.login);
-  const [signUp, setSignUp] = useState({ userNumber: "", userName:"",userPassword:"" });
-  const {setAccount} = useContext(DataContext);
+  const [signUp, setSignUp] = useState({
+    userNumber: "",
+    userName: "",
+    userPassword: "",
+  });
+  const { setAccount } = useContext(DataContext);
   const [login, setLogin] = useState(loginValue);
   const [error, setError] = useState(false);
   function toogleAccount() {
@@ -109,19 +113,19 @@ function LoginDialog({ open, setOpen }) {
   }
   async function singUpUser() {
     let response = await UserSignUp(signUp);
-    if(!response) return;
+    if (!response) return;
     handlerClose();
     setAccount(signUp.userName);
   }
-  function onValueChange(e){
-    setLogin({...login, [e.target.name]:e.target.value});
+  function onValueChange(e) {
+    setLogin({ ...login, [e.target.name]: e.target.value });
   }
-  async function loginUser(){
+  async function loginUser() {
     let res = await UserLogin(login);
-    if(res.status === 200){
+    if (res.status === 200) {
       handlerClose();
       setAccount(login.userName);
-    }else{
+    } else {
       setError(true);
     }
   }

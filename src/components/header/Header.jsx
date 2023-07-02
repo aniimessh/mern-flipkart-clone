@@ -4,7 +4,7 @@ import Search from "./Search";
 import CustomButton from "./CustomButton";
 // import image of flipkart logo
 
-// adding custom css using matrial UI styled component
+// adding custom css using matrial UI styled function
 const StyledHeader = styled(AppBar)`
   background: #2874f1;
   height: 55px;
