@@ -1,6 +1,7 @@
 import Carousel from "react-multi-carousel";
 import { Box, Typography, Button, styled, Divider } from "@mui/material";
 import Countdown from "react-countdown";
+import { Link } from "react-router-dom";
 
 const responsive = {
   desktop: {
@@ -90,12 +91,16 @@ function Slide({ products, title, timer }) {
         dotListClass="custom-dot-list-style"
       >
         {products.map((item) => (
-          <Box textAlign="center" styled={{ padding: "25px 25px" }}>
-            <Image src={item.url} alt=" BannerImage" />
-            <Text style={{ fontWeight: "bold" }}>{item.title.shortTitle}</Text>
-            <Text style={{ color: "#0FA047" }}>{item.discount}</Text>
-            <Text style={{ color: "#7B7B7B" }}>{item.tagline}</Text>
-          </Box>
+          <Link to={`/product/${item.id}`} style={{ textDecoration: "none" }}>
+            <Box textAlign="center" styled={{ padding: "25px 25px" }}>
+              <Image src={item.url} alt=" BannerImage" />
+              <Text style={{ fontWeight: "bold", color:"#000" }}>
+                {item.title.shortTitle}
+              </Text>
+              <Text style={{ color: "#0FA047" }}>{item.discount}</Text>
+              <Text style={{ color: "#7B7B7B" }}>{item.tagline}</Text>
+            </Box>
+          </Link>
         ))}
       </Carousel>
     </Component>
