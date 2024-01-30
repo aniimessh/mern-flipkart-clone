@@ -1,9 +1,19 @@
-import { AppBar, Toolbar, styled, Box, Typography } from "@mui/material";
-import React from "react";
+import {
+  AppBar,
+  Toolbar,
+  styled,
+  Box,
+  Typography,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+} from "@mui/material";
+import React, { useState } from "react";
 import Search from "./Search";
 import CustomButton from "./CustomButton";
 import { Link } from "react-router-dom";
-// import image of flipkart logo
+import MenuIcon from "@mui/icons-material/Menu";
 
 // adding custom css using matrial UI styled function
 const StyledHeader = styled(AppBar)`
@@ -24,19 +34,61 @@ const PlusImage = styled("img")({
   height: 10,
   marginLeft: 4,
 });
-const CustomButtonWrapper = styled(Box)`
-  margin: 0 5% 0 auto;
-`;
+const CustomButtonWrapper = styled(Box)(({ theme }) => ({
+  margin: "0 5% 0 auto",
+
+  [theme.breakpoints.down("md")]: {
+    display: "none",
+  },
+}));
+
+const MenuButton = styled(IconButton)(({ theme }) => ({
+  display: "none",
+  color: "inherit",
+
+  [theme.breakpoints.down("md")]: {
+    display: "block",
+  },
+}));
+
+
 
 function Header() {
+  const [open, setOpen] = useState(false);
   const logoURL =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png";
   const subURL =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/plus_aef861.png";
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const list = () => {
+    return (
+      <Box sx={{ width: "200px" }} onClick={handleClose}>
+        <List>
+          <ListItem button>
+            <CustomButton />
+          </ListItem>
+        </List>
+      </Box>
+    );
+  };
   return (
     <StyledHeader>
       <Toolbar style={{ minHeight: 55 }}>
-        <Component to="/" style={{textDecoration: "none"}}>
+        <MenuButton onClick={handleOpen}>
+          <MenuIcon />
+        </MenuButton>
+        <Drawer open={open} onClick={handleClose}>
+          {list()}
+        </Drawer>
+        <Component to="/" style={{ textDecoration: "none" }}>
           <img src={logoURL} alt="flipkart-logo" style={{ width: 75 }} />
           <Box style={{ display: "flex" }}>
             <SubHeading>

@@ -8,7 +8,7 @@ import Slide from "./Slide";
 import { ProductItem } from "./ProductItem";
 
 const Container = styled(Box)`
-  padding: 10px 100px;
+  padding: 10px 10px;
   background-color: #f2f2f2;
 `;
 
