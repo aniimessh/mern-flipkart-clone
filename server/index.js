@@ -8,10 +8,10 @@ import Router from "./routes/route.js";
 dotenv.config();
 const app = express();
 app.use(cors());
-app.use(bodyParser.json({extended:true}))
-app.use(bodyParser.urlencoded({extended: true}))
-app.use('/', Router);
-const PORT = process.env.MY_PORT || 4000;
+app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/", Router);
+const PORT = "mern-flipkart-clone-backend.vercel.app" || 4000;
 dbConnect();
 app.listen(PORT, () => {
   console.log(`Server sarted at ${PORT}`);
