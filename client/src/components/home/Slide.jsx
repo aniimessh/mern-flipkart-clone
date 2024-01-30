@@ -90,8 +90,8 @@ function Slide({ products, title, timer }) {
         containerClass="carousel-container"
         dotListClass="custom-dot-list-style"
       >
-        {products.map((item) => (
-          <Link to={`/product/${item.id}`} style={{ textDecoration: "none" }}>
+        {products.map((item, index) => (
+          <Link to={`/product/${item.id}`} style={{ textDecoration: "none" }} key={index}>
             <Box textAlign="center" styled={{ padding: "25px 25px" }}>
               <Image src={item.url} alt=" BannerImage" />
               <Text style={{ fontWeight: "bold", color:"#000" }}>

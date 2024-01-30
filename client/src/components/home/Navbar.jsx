@@ -21,6 +21,7 @@ const Text = styled(Typography)`
 
 function Navbar() {
   return (
+    <Box sx={{background: "#fff"}}>
     <WrapperBox>
       {navData.map((item, id) => {
         return (
@@ -31,6 +32,7 @@ function Navbar() {
         );
       })}
     </WrapperBox>
+    </Box>
   );
 }
 

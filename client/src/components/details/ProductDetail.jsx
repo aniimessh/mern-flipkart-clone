@@ -35,7 +35,6 @@ const CellText = styled(TableRow)({
 });
 
 const ProductDetail = ({ products }) => {
-  console.log(products);
   const fassured =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png";
   const adURL =
@@ -65,7 +64,7 @@ const ProductDetail = ({ products }) => {
           <strike>₹{products?.price?.mrp}</strike>
         </Box>
         <Box component="span" style={{ color: "#388e3c", marginLeft: "10px" }}>
-          {products?.price?.discount}
+          {products?.discount}
         </Box>
       </Typography>
       <Typography>Available Offers</Typography>

@@ -48,8 +48,6 @@ export const DetailView = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { products } = useSelector((state) => state.getproductDetails);
-  console.log(products?.productDetails);
-
   useEffect(() => {
     dispatch(getProductDetails(id));
   }, [dispatch, id]);

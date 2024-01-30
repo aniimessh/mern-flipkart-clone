@@ -33,7 +33,6 @@ const ListWrapper = styled(List)({
 function Search() {
   const [text, setText] = useState("");
   const { products } = useSelector((state) => state.getProducts);
-  console.log(text);
 
   const dispatch = useDispatch();
 

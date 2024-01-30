@@ -45,9 +45,9 @@ const StyledBox = styled(Box)(({theme}) => ({
 export const ProductItem = () => {
   return (
     <ImageBox>
-      {ProductCard.map((item) => {
+      {ProductCard.map((item, index) => {
         return (
-          <StyledBox>
+          <StyledBox key={index}>
             <Link href="#"> <Image src={item} alt="" /></Link>
           </StyledBox>
         );
