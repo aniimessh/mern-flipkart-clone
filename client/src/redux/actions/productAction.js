@@ -7,7 +7,7 @@ import {
   GET_PRODUCT_DETAILS_FAIL,
 } from "../constants/productConstant";
 
-const URL = "mern-flipkart-clone-backend.vercel.app";
+// const URL = "mern-flipkart-clone-backend.vercel.app";
 
 export const getProducts = () => async (dispatch) => {
   try {

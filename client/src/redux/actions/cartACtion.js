@@ -1,7 +1,7 @@
 import * as actionTypes from '../constants/cartConstant';
 import axios from 'axios';
 
-const URL  = "mern-flipkart-clone-backend.vercel.app"
+// const URL  = "mern-flipkart-clone-backend.vercel.app"
 
 export const addToCart = (id, quantity) => async (dispatch) => {
     try { 
