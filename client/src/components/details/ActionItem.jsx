@@ -3,10 +3,14 @@ import React from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FlashOnIcon from "@mui/icons-material/FlashOn";
 
-const LeftContainer = styled(Box)({
+const LeftContainer = styled(Box)(({theme}) => ({
   minWidth: "40%",
   padding: "40px 0px 0px 80px",
-});
+
+  [theme.breakpoints.down('md')]:{
+    padding: "20px 40px"
+  }
+}));
 
 const Image = styled("img")({
   padding: "15px"

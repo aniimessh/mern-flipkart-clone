@@ -4,6 +4,24 @@ import { useParams } from "react-router-dom";
 import { getProductDetails } from "../../redux/actions/productAction";
 import { Box, Grid, Typography, styled } from "@mui/material";
 import ActionItem from "./ActionItem";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import ProductDetail from "./ProductDetail";
+
+const SmallText = styled(Box)({
+  fontSize: "14px",
+  verticalAlign: "baseline",
+
+  "& > p": {
+    fontSize: "14px",
+    marginTop: "10px",
+  },
+});
+
+const StyledBadge = styled(LocalOfferIcon)({
+  marginRight: "10px",
+  color: "#00cc00",
+  fontSize: "15px",
+});
 
 const Component = styled(Box)({
   background: "#f2f2f2",
@@ -15,9 +33,13 @@ const Container = styled(Grid)({
   display: "flex",
 });
 
-const RightContainer = styled(Grid)({
+const RightContainer = styled(Grid)(({ theme }) => ({
   marginTop: "50px",
-});
+
+  [theme.breakpoints.down('md')]:{
+    margin: 0
+  }
+}));
 
 export const DetailView = () => {
   const fassured =
@@ -39,44 +61,7 @@ export const DetailView = () => {
             <ActionItem product={products?.productDetails} />
           </Grid>
           <RightContainer item lg={8} md={8} sm={8} xs={12}>
-            <Typography>
-              {products?.productDetails?.title?.longTitle}
-            </Typography>
-            <Typography
-              style={{
-                marginTop: "5px",
-                color: "#878787",
-                fontSize: "14px",
-                display: "flex",
-              }}
-            >
-              8 Rating &amp; 1 Review
-              <Box component="span">
-                <img
-                  src={fassured}
-                  alt=""
-                  width="77"
-                  style={{ marginLeft: 20 }}
-                />
-              </Box>
-            </Typography>
-            <Typography>
-              <Box
-                component="span"
-                style={{ fontSize: "28px", marginLeft: "10px" }}
-              >
-                ₹{products?.productDetails?.price?.cost}
-              </Box>
-              <Box component="span" style={{ color: "#878787", marginLeft: "10px"}}>
-                <strike>{products?.productDetails?.price?.mrp}</strike>
-              </Box>
-              <Box
-                component="span"
-                style={{ color: "#388e3c", marginLeft: "10px" }}
-              >
-                {products?.productDetails?.price?.discount}
-              </Box>
-            </Typography>
+            <ProductDetail products={products?.productDetails} />
           </RightContainer>
         </Container>
       )}
